@@ -21,42 +21,71 @@ import {
     LineElement,
     Tooltip
   );
+
 const supabase = createClientComponentClient();
 
-export default function Dashboard(){
-    
-    return(
-        <>
+interface HistoricoItem {
+    dia: number;
+    mes: number;
+    ano: number;
+    ganhos: number;
+  }
+  
+  export default function Dashboard() {
+    const [historico, setHistorico] = useState<HistoricoItem[]>([]);
+  
+    useEffect(() => {
+      async function fetchHistorico() {
+      const { data: { user } } = await supabase.auth.getUser();
+      console.log(user);
+      const { data, error } = await supabase
+          .from("afiliados_ganhos")
+          .select("dia, mes, ano, ganhos")
+          
+        if (error) {
+          console.error("Erro ao buscar histórico:", error.message);
+          return;
+        }
+  
+        setHistorico(data);
+      }
+  
+      fetchHistorico();
+    }, []);
+  
+    const data = {
+      labels: historico.map((item) => `${item.ano}-${item.mes}`),
+      datasets: [
+        {
+          label: "Ganhos",
+          data: historico.map((item) => item.ganhos),
+          backgroundColor: "#fb7185",
+        },
+      ],
+    };
+  
+    return (
+      <>
         <div className="absolute w-full max-w-xl border rounded p-4 top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2">
-            <div className="p-2 font-light flex justify-center items-center gap-2">
-                <Image src={Logo} alt="logo" width={50}></Image>
-                <h1 className="text-3xl text-rose-400 mt-1">Painel de Afiliados</h1>
+          <div className="p-2 font-light flex justify-center items-center gap-2">
+            <Image src={Logo} alt="logo" width={50}></Image>
+            <h1 className="text-3xl text-rose-400 mt-1">Painel de Afiliados</h1>
+          </div>
+          <div className="text-center text-xl text-zinc-700 mt-2">
+            <h1 className="text-2xl">Este mês suas vendas te geraram:</h1>
+            <div className="bg-rose-400 text-white font-medium inline-block mt-2 px-3.5 py-2.5 rounded-full">
+              <h1 className="text-2xl">R$: 110,00</h1>
             </div>
-            <div className="text-center text-xl text-zinc-700 mt-2">
-                <h1 className="text-2xl">Este mês suas vendas te geraram:</h1>
-                <div className="bg-rose-400 text-white font-medium inline-block mt-2 px-3.5 py-2.5 rounded-full">
-                    <h1 className="text-2xl">R$: 110,00</h1>
-                </div>
+          </div>
+          <div>
+            <h1 className="text-center text-2xl text-zinc-700 mt-4 pt-2 border-t">
+              Histórico
+            </h1>
+            <div id="chart">
+              <Line data={data} />
             </div>
-            <div>
-                <h1 className="text-center text-2xl text-zinc-700 mt-4 pt-2 border-t">Histórico</h1>
-                <div id="chart">
-                    <Line
-                        data={{
-                        labels: [
-                            "2023-01",
-                        ],
-                        datasets: [
-                            {
-                            data: [100],
-                            backgroundColor: "#fb7185",
-                            },
-                        ],
-                        }}
-                    />
-                    </div>
-            </div>
+          </div>
         </div>
-        </>
-    )
-}
+      </>
+    );
+  }
