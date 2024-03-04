@@ -41,9 +41,9 @@ interface HistoricoItem {
       const { data, error } = await supabase
           .from("afiliados_ganhos")
           .select("dia, mes, ano, ganhos")
-          
+          .eq('afiliado_id', user?.id);
         if (error) {
-          console.error("Erro ao buscar histórico:", error.message);
+          console.error("Erro ao buscar histórico:", error);
           return;
         }
   
@@ -54,7 +54,7 @@ interface HistoricoItem {
     }, []);
   
     const data = {
-      labels: historico.map((item) => `${item.ano}-${item.mes}`),
+      labels: historico.map((item) => `${item.dia}-${item.mes}-${item.ano}`),
       datasets: [
         {
           label: "Ganhos",

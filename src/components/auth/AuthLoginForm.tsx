@@ -85,13 +85,10 @@ export function AuthLoginForm({ message }: AuthLoginFormProps) {
             )}
           />
 
-          <div className='mt-4 flex flex-col gap-3 w-full'>
+          <div className='mt-4 flex flex-col gap-3 w-full text-white'>
             <Button className="bg-rose-400 hover:bg-rose-500" type="submit">
               Entrar
             </Button>
-            <Link href="/auth/register" className={buttonVariants({ variant: "ghost" })}>
-              Criar uma conta
-            </Link>
           </div>
 
           {message && (
