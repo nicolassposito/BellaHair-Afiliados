@@ -70,7 +70,7 @@ const supabase = createClientComponentClient();
       <div className="w-full container mx-auto">
         <div className="flex items-center justify-center">
           <Image width={120} src={logo} alt="logo"/>
-          <h1 className="text-5xl">Envios</h1>
+          <h1 className="text-5xl">Admin</h1>
         </div>
         <div className="flex items-center py-4">
           <Input
