@@ -2,8 +2,6 @@
 
 import { NextApiRequest, NextApiResponse } from "next";
 import { createClient } from "@supabase/supabase-js";
-import { Profile as OriginalProfile } from "@/app/admin/components/columns";
-
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   const token = req.headers.authorization?.split(" ")[1];
@@ -18,21 +16,20 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   );
   const filterEmail = req.query.filterEmail || "";
   try {
-    // Consulta a tabela profiles
-    const { data: afiliados, error } = await supabase
+    const { data: afiliados, error: afiliadosError } = await supabase
       .from("profiles")
       .select("*");
 
-    if (error) {
-      console.error("Erro ao buscar afiliados:", error);
+    if (afiliadosError) {
+      console.error("Erro ao buscar afiliados:", afiliadosError);
       return res.status(500).json({ error: "Erro interno do servidor" });
     }
 
-    const afiliadosComGanhos = await Promise.all(afiliados.map(async (afiliado: any) => {
-      const hoje = new Date();
-      const mesAtual = hoje.getMonth() + 1;
-      const anoAtual = hoje.getFullYear();
+    const hoje = new Date();
+    const mesAtual = hoje.getMonth() + 1;
+    const anoAtual = hoje.getFullYear();
 
+    const afiliadosComGanhos = await Promise.all(afiliados.map(async (afiliado: any) => {
       const { data: ganhos, error: ganhosError } = await supabase
         .from("afiliados_ganhos")
         .select("ganhos")
@@ -45,7 +42,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
         return { ...afiliado, ganhoMes: null };
       }
 
-      return { ...afiliado, ganhoMes: ganhos[0]?.ganhos || 0 };
+      const totalGanhos = ganhos.reduce((acc: number, curr: any) => acc + curr.ganhos, 0) || 0;
+      const ganhoMes = parseFloat(totalGanhos.toFixed(2));
+
+      return { ...afiliado, ganhoMes };
     }));
 
     res.status(200).json(afiliadosComGanhos);
