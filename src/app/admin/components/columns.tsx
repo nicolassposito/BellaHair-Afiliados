@@ -122,7 +122,7 @@ export type Profile = {
                       onClick={handleRegisterGanho}
                       autoFocus
                     >
-                      <Button>Registrar Ganho</Button>
+                      <Button className="bg-rose-400 text-white">Registrar Ganho</Button>
                     </AlertDialogAction>
                   </AlertDialogFooter>
                 </AlertDialogContent>

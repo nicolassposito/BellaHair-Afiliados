@@ -22,19 +22,45 @@ import {
   TableRow,
 } from "@/components/ui/table";
 import { columns, Profile } from "./components/columns";
+import { useRouter } from 'next/navigation';
 
 const supabase = createClientComponentClient();
   
   export default function DataTableDemo() {
+    const router = useRouter()
     const [data, setData] = React.useState<Profile[]>([]);
     const [filterEmail, setFilterEmail] = React.useState('');
     const [sorting, setSorting] = React.useState<SortingState>([]);
     const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({});
+    const [isAdmin, setIsAdmin] = React.useState(false);
   
     const fetchData = async () => {
       const supabase = createClientComponentClient()
-      const { data: { user } } = await supabase.auth.getUser()
       const session = await supabase.auth.getSession();
+        if (!session) {
+        return;
+        }
+
+        const { data: profile, error } = await supabase
+        .from("profiles")
+        .select("admin")
+        .eq("id", session.data.session?.user.id)
+        .single();
+
+        if (error) {
+        console.error("Error fetching user profile:", error.message);
+        return;
+        }
+
+        setIsAdmin(profile?.admin || false);
+
+        if (!profile?.admin) {
+        console.log("User is not an admin.");
+        router.push("/");
+        return;
+        }
+
+      const { data: { user } } = await supabase.auth.getUser()
       const token = session.data.session?.access_token;
       try {
         const response = await fetch(`/api/profiles`, {
@@ -68,19 +94,11 @@ const supabase = createClientComponentClient();
   
     return (
       <div className="w-full container mx-auto">
-        <div className="flex items-center justify-center">
-          <Image width={120} src={logo} alt="logo"/>
-          <h1 className="text-5xl">Admin</h1>
+        <div className="flex items-center justify-center mt-6">
+          <Image width={60} src={logo} alt="logo"/>
+          <h1 className="text-4xl">Admin</h1>
         </div>
-        <div className="flex items-center py-4">
-          <Input
-            placeholder="Filter emails..."
-            value={filterEmail}
-            onChange={(event) => setFilterEmail(event.target.value)}
-            className="max-w-sm"
-          />
-        </div>
-        <div className="rounded-md border">
+        <div className="rounded-md border mt-4">
           <Table>
             <TableHeader>
               {table.getHeaderGroups().map((headerGroup) => (
