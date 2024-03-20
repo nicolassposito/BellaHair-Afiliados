@@ -35,10 +35,20 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
 import { Button } from "@/components/ui/button"
+import { AuthRegisterForm } from "@/components/auth/authRegisterForm";
+import { AUTH_BASE_PROTECTED_ROUTE } from "@/constants/auth";
+import { createSupabaseServerClient } from "@/lib/database/server";
+import { cookies } from "next/headers";
+import { permanentRedirect } from "next/navigation";
+
+interface RegisterPageProps {
+  searchParams: { message: string }
+};
 
 const supabase = createClientComponentClient();
-  
-  export default function DataTableDemo() {
+
+  export default function DataTableDemo({ searchParams }: RegisterPageProps) {
+    const message = searchParams.message;
     const router = useRouter()
     const [data, setData] = React.useState<Profile[]>([]);
     const [filterEmail, setFilterEmail] = React.useState('');
@@ -118,14 +128,13 @@ const supabase = createClientComponentClient();
                   <AlertDialogTrigger className="bg-rose-400 text-white px-3.5 py-2 rounded-full font-normal hover:brightness-95 hover:bg-pink-500 inline-block transition text-white tracking-wide">Registrar afiliado</AlertDialogTrigger>
                   <AlertDialogContent className="bg-white">
                     <AlertDialogHeader>
-                      <AlertDialogTitle>Registrar afiliado</AlertDialogTitle>
                       <AlertDialogDescription>
-                        
+                      <AuthRegisterForm message={message} />
                       </AlertDialogDescription>
                     </AlertDialogHeader>
                     <AlertDialogFooter>
-                      <AlertDialogCancel>Cancel</AlertDialogCancel>
-                      <AlertDialogAction>Continue</AlertDialogAction>
+                      <AlertDialogCancel>Cancelar</AlertDialogCancel>
+                      <AlertDialogAction>Pronto</AlertDialogAction>
                     </AlertDialogFooter>
                   </AlertDialogContent>
                 </AlertDialog>
