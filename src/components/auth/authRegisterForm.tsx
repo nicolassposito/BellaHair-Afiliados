@@ -18,9 +18,11 @@ import * as z from "zod";
 import "./styles.css";
 import logo from "..//..//..//public/images/logo-b.png";
 import Image from "next/image";
+import { useState } from "react";
 
 interface AuthRegisterFormProps {
   message: string;
+  onSignUpSuccess: () => void;
 }
 
 const registerFormSchema = z.object({
@@ -37,16 +39,19 @@ const registerFormSchema = z.object({
 
 export type Register = z.infer<typeof registerFormSchema>;
 
-export function AuthRegisterForm({ message }: AuthRegisterFormProps) {
-  const registerForm = useForm<Register>({
-    resolver: zodResolver(registerFormSchema),
-  });
+export function AuthRegisterForm({ message, onSignUpSuccess }: AuthRegisterFormProps) {
+    const [errorMessage, setErrorMessage] = useState<string>("");
+    const registerForm = useForm<Register>({
+        resolver: zodResolver(registerFormSchema),
+    });
 
   async function handleSignUp(values: Register) {
     try {
       await signUp(values);
+      onSignUpSuccess();
     } catch (error) {
       console.error(error);
+      setErrorMessage("Erro ao criar usuário. Por favor, tente novamente.");
     }
   }
 

@@ -35,6 +35,7 @@ import {
   AlertDialogTrigger,
 } from "@/components/ui/alert-dialog"
 import { Button } from "@/components/ui/button"
+import { useState } from "react";
 import { AuthRegisterForm } from "@/components/auth/authRegisterForm";
 import { AUTH_BASE_PROTECTED_ROUTE } from "@/constants/auth";
 import { createSupabaseServerClient } from "@/lib/database/server";
@@ -48,7 +49,11 @@ interface RegisterPageProps {
 const supabase = createClientComponentClient();
 
   export default function DataTableDemo({ searchParams }: RegisterPageProps) {
-    const message = searchParams.message;
+    const [message, setMessage] = useState<string>("");
+
+  function handleSignUpSuccess() {
+    setMessage("Usuário criado com sucesso!");
+  }
     const router = useRouter()
     const [data, setData] = React.useState<Profile[]>([]);
     const [filterEmail, setFilterEmail] = React.useState('');
@@ -129,7 +134,7 @@ const supabase = createClientComponentClient();
                   <AlertDialogContent className="bg-white">
                     <AlertDialogHeader>
                       <AlertDialogDescription>
-                      <AuthRegisterForm message={message} />
+                      <AuthRegisterForm message={message} onSignUpSuccess={handleSignUpSuccess} />
                       </AlertDialogDescription>
                     </AlertDialogHeader>
                     <AlertDialogFooter>
