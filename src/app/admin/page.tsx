@@ -23,6 +23,18 @@ import {
 } from "@/components/ui/table";
 import { columns, Profile } from "./components/columns";
 import { useRouter } from 'next/navigation';
+import {
+  AlertDialog,
+  AlertDialogAction,
+  AlertDialogCancel,
+  AlertDialogContent,
+  AlertDialogDescription,
+  AlertDialogFooter,
+  AlertDialogHeader,
+  AlertDialogTitle,
+  AlertDialogTrigger,
+} from "@/components/ui/alert-dialog"
+import { Button } from "@/components/ui/button"
 
 const supabase = createClientComponentClient();
   
@@ -94,9 +106,32 @@ const supabase = createClientComponentClient();
   
     return (
       <div className="w-full container mx-auto">
-        <div className="flex items-center justify-center mt-6">
-          <Image width={60} src={logo} alt="logo"/>
-          <h1 className="text-4xl">Admin</h1>
+        <div className="flex justify-between items-center mt-6">
+          <div className="flex items-center gap-1.5">
+            <Image width={44} src={logo} alt="logo"/>
+            <h1 className="text-3xl text-slate-800 tracking-tight">Painel de ganhos</h1>
+          </div>
+          <div className="flex items-center gap-2">
+            <ul>
+              <li>
+                <AlertDialog>
+                  <AlertDialogTrigger className="bg-rose-400 text-white px-3.5 py-2 rounded-full font-normal hover:brightness-95 hover:bg-pink-500 inline-block transition text-white tracking-wide">Registrar afiliado</AlertDialogTrigger>
+                  <AlertDialogContent className="bg-white">
+                    <AlertDialogHeader>
+                      <AlertDialogTitle>Registrar afiliado</AlertDialogTitle>
+                      <AlertDialogDescription>
+                        
+                      </AlertDialogDescription>
+                    </AlertDialogHeader>
+                    <AlertDialogFooter>
+                      <AlertDialogCancel>Cancel</AlertDialogCancel>
+                      <AlertDialogAction>Continue</AlertDialogAction>
+                    </AlertDialogFooter>
+                  </AlertDialogContent>
+                </AlertDialog>
+              </li>
+            </ul>
+          </div>
         </div>
         <div className="rounded-md border mt-4">
           <Table>
