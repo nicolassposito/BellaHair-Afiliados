@@ -30,3 +30,23 @@ input[type=number] {
 .hero div{
   z-index: 2;
 }
+
+.custom-shape-divider-top-1711428256 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+}
+
+.custom-shape-divider-top-1711428256 svg {
+  position: relative;
+  display: block;
+  width: calc(100% + 1.3px);
+  height: 39px;
+}
+
+.custom-shape-divider-top-1711428256 .shape-fill {
+  fill: #FB7185;
+}

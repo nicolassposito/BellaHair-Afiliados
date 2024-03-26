@@ -1,5 +1,6 @@
 import Image from "next/image";
 import card from "@/../public/home/card.png";
+import waves from "@/../public/home/wavesOpacity hero.svg";
 import background from "@/../public/home/patterns.svg";
 import Profile from "@/../public/home/cardProfile.jpg";
 import { HelpCircle, Star } from "lucide-react";
@@ -36,6 +37,7 @@ export default function Hero() {
                 </div>
             </div>
         </div>
+        <Image src={waves} alt="waves" className="absolute -bottom-0 w-full"/>
       </div>
       </>
     )
