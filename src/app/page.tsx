@@ -1,7 +1,11 @@
+import Header from "./components/header"
+import Hero from "./components/hero/hero"
+
 export default function Page() {
   return(
     <>
-    <h1>Home</h1>
+    <Header></Header>
+    <Hero></Hero>
     </>
   )
 }
