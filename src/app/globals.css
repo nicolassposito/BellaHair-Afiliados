@@ -26,3 +26,7 @@ input[type=number] {
   background-image: url(.//..//..//public/home/patterns.svg);
   background-size: cover;
 }
+
+.hero div{
+  z-index: 2;
+}

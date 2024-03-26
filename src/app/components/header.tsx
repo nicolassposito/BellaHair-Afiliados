@@ -7,7 +7,7 @@ import { HelpCircle } from "lucide-react";
 export default function Header() {
     return(
       <>
-      <header className="py-3 px-5 flex items-center justify-between z-[1] fixed w-11/12 left-1/2 -translate-x-1/2 rounded-full top-4 bg-rose-100 bg-opacity-40 backdrop-blur-lg">
+      <header className="py-3 px-5 flex items-center justify-between z-[3] fixed w-11/12 left-1/2 -translate-x-1/2 rounded-full top-4 bg-rose-100 bg-opacity-40 backdrop-blur-lg">
         <div>
             <Link href="/"><Image className="md:block hidden" src={logo} width={180} alt="Bella Hair" /></Link>
             <Link href="/"><Image className="md:hidden" src={logoMob} width={51} alt="Bella Hair" /></Link>
