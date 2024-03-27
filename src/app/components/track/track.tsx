@@ -18,7 +18,7 @@ export default function Track() {
             <div><Smartphone className="absolute text-white w-24 h-24 opacity-40 rotate-45 top-1/2 right-40"/></div>
             <div><AtSign className="absolute text-white w-24 h-24 opacity-40 rotate-0 top-3/4 right-32"/></div>
         </div>
-        <h1 className="text-3xl sm:text-4xl text-center text-rose-100 font-medium drop-shadow px-4">Acompanhe suas vendas em tempo real</h1>
+        <h1 className="text-3xl sm:text-4xl text-center text-rose-50 font-medium drop-shadow px-4">Acompanhe suas vendas em tempo real</h1>
         <div className="px-6">
             <div className="mt-6 mx-auto md:px-8 max-w-lg md:max-w-3xl overflow-hidden rounded-xl">
                 <Image src={painel} alt="area afiliados" className="w-full hidden md:block scale-125 rounded-xl"/>

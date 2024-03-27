@@ -8,7 +8,7 @@ export default function Featured() {
       <>
       <div className="relative pb-8 md:pb-16" style={{backgroundColor: '#f25970'}}>
         <Image src={waves} alt="waves" className="-mt-1 w-full pb-12"/>
-        <h1 className="text-3xl sm:text-4xl text-center text-rose-100 font-medium drop-shadow">Como funciona?</h1>
+        <h1 className="text-3xl sm:text-4xl text-center text-rose-50 font-medium drop-shadow">Como funciona?</h1>
         <div className="grid mt-10 grid-rows-1 grid-cols-1 sm:grid-cols-4 xl:grid-cols-11 px-6 items-center justify-center sm:gap-3 xl:gap-0">
           <div className="bg-rose-100 relative rounded-xl p-5 shadow-xl col-span-2 hover:bg-rose-400 hover:shadow-lg transition group h-full mx-auto grid">
             <div className="absolute top-4 right-5 text-2xl text-rose-300 group-hover:text-rose-200 transition outline outline-2 w-8 h-8 flex justify-center items-center rounded-full">1</div>
