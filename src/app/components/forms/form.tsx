@@ -40,121 +40,103 @@ export default function Forms() {
   };
 
   return (
-    <div style={{ backgroundColor: "#f25970" }}>
+    <div className="pt-6 pb-8" style={{ backgroundColor: "#f25970" }}>
       <h1 className="text-3xl sm:text-4xl text-center text-rose-50 font-medium drop-shadow px-4">
         Faça sua solicitação!
       </h1>
       <p className="text-lg text-center font-light text-rose-200">
         Processo rápido e prático. Retorno garantido.
       </p>
-      <div className="container mx-auto">
+      <div className="container mx-auto p-6 mt-6 bg-rose-400 shadow-lg rounded-xl text-rose-50 font-medium">
         <Form {...form}>
-          <form onSubmit={form.handleSubmit(onSubmit)} className="space-y-8">
-            <FormField
-              control={form.control}
-              name="nomeCompleto"
-              render={({ field, fieldState }) => (
-                <FormItem>
-                  <FormLabel>Nome Completo</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Digite seu nome completo" {...field} />
-                  </FormControl>
-                  <FormMessage>{fieldState.error?.message}</FormMessage>
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="email"
-              render={({ field, fieldState }) => (
-                <FormItem>
-                  <FormLabel>E-mail</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Digite seu e-mail" {...field} />
-                  </FormControl>
-                  <FormMessage>{fieldState.error?.message}</FormMessage>
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="cpf"
-              render={({ field, fieldState }) => (
-                <FormItem>
-                  <FormLabel>CPF</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Digite seu CPF" {...field} />
-                  </FormControl>
-                  <FormMessage>{fieldState.error?.message}</FormMessage>
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="cupom"
-              render={({ field, fieldState }) => (
-                <FormItem>
-                  <FormLabel>CUPOM</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Ex: Maria5" {...field} />
-                  </FormControl>
-                  <FormMessage>{fieldState.error?.message}</FormMessage>
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="endereco"
-              render={({ field, fieldState }) => (
-                <FormItem>
-                  <FormLabel>ENDEREÇO</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Rua exemplo, 123, apto 123" {...field} />
-                  </FormControl>
-                  <FormMessage>{fieldState.error?.message}</FormMessage>
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="telefone"
-              render={({ field, fieldState }) => (
-                <FormItem>
-                  <FormLabel>TELEFONE</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Digite seu telefone (DDD)" {...field} />
-                  </FormControl>
-                  <FormMessage>{fieldState.error?.message}</FormMessage>
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="pix"
-              render={({ field, fieldState }) => (
-                <FormItem>
-                  <FormLabel>Chave PIX</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Digite seu PIX (para pagamentos)" {...field} />
-                  </FormControl>
-                  <FormMessage>{fieldState.error?.message}</FormMessage>
-                </FormItem>
-              )}
-            />
-            <FormField
-              control={form.control}
-              name="instagram"
-              render={({ field, fieldState }) => (
-                <FormItem>
-                  <FormLabel>Instagram</FormLabel>
-                  <FormControl>
-                    <Input placeholder="Digite o @ do seu Instagram" {...field} />
-                  </FormControl>
-                  <FormMessage>{fieldState.error?.message}</FormMessage>
-                </FormItem>
-              )}
-            />
-            <Button type="submit" style={{ backgroundColor: "pink" }}>
+          <form onSubmit={form.handleSubmit(onSubmit)} className="flex flex-col items-center space-y-3">
+            <div className="flex flex-col sm:flex-row justify-center gap-2 w-full">
+                <div className="w-full space-y-2">
+                    <FormField control={form.control} name="nomeCompleto" render={({ field, fieldState }) => (
+                        <FormItem>
+                        <FormLabel>Nome Completo</FormLabel>
+                        <FormControl>
+                            <Input className="!mt-1" placeholder="Digite seu nome completo" {...field} />
+                        </FormControl>
+                        <FormMessage>{fieldState.error?.message}</FormMessage>
+                        </FormItem>
+                    )}
+                    />
+                    <FormField control={form.control} name="email" render={({ field, fieldState }) => (
+                        <FormItem>
+                        <FormLabel>E-mail</FormLabel>
+                        <FormControl>
+                            <Input className="!mt-1" placeholder="Digite seu e-mail" {...field} />
+                        </FormControl>
+                        <FormMessage>{fieldState.error?.message}</FormMessage>
+                        </FormItem>
+                    )}
+                    />
+                    <FormField control={form.control} name="cpf" render={({ field, fieldState }) => (
+                        <FormItem>
+                        <FormLabel>CPF</FormLabel>
+                        <FormControl>
+                            <Input className="!mt-1" placeholder="Digite seu CPF" {...field} />
+                        </FormControl>
+                        <FormMessage>{fieldState.error?.message}</FormMessage>
+                        </FormItem>
+                    )}
+                    />
+                    <FormField control={form.control} name="cupom" render={({ field, fieldState }) => (
+                        <FormItem>
+                        <FormLabel>CUPOM</FormLabel>
+                        <FormControl>
+                            <Input className="!mt-1" placeholder="Ex: Maria5" {...field} />
+                        </FormControl>
+                        <FormMessage>{fieldState.error?.message}</FormMessage>
+                        </FormItem>
+                    )}
+                    />
+                </div>
+                <div className="w-full space-y-2">
+                    <FormField control={form.control} name="endereco" render={({ field, fieldState }) => (
+                        <FormItem>
+                        <FormLabel>ENDEREÇO</FormLabel>
+                        <FormControl>
+                            <Input className="!mt-1" placeholder="Rua exemplo, 123, apto 123" {...field} />
+                        </FormControl>
+                        <FormMessage>{fieldState.error?.message}</FormMessage>
+                        </FormItem>
+                    )}
+                    />
+                    <FormField control={form.control} name="telefone" render={({ field, fieldState }) => (
+                        <FormItem>
+                        <FormLabel>TELEFONE</FormLabel>
+                        <FormControl>
+                            <Input className="!mt-1" placeholder="Digite seu telefone (DDD)" {...field} />
+                        </FormControl>
+                        <FormMessage>{fieldState.error?.message}</FormMessage>
+                        </FormItem>
+                    )}
+                    />
+                    <FormField control={form.control} name="pix" render={({ field, fieldState }) => (
+                        <FormItem>
+                        <FormLabel>Chave PIX</FormLabel>
+                        <FormControl>
+                            <Input className="!mt-1" placeholder="Digite seu PIX (para pagamentos)" {...field} />
+                        </FormControl>
+                        <FormMessage>{fieldState.error?.message}</FormMessage>
+                        </FormItem>
+                    )}
+                    />
+                    <FormField control={form.control} name="instagram" render={({ field, fieldState }) => (
+                        <FormItem>
+                        <FormLabel>Instagram</FormLabel>
+                        <FormControl>
+                            <Input className="!mt-1" placeholder="Digite o @ do seu Instagram" {...field} />
+                        </FormControl>
+                        <FormMessage>{fieldState.error?.message}</FormMessage>
+                        </FormItem>
+                    )}
+                    />
+                </div>
+            </div>
+            <Button type="submit" className="w-fit bg-rose-100 px-8 text-rose-500 shadow-lg">
               Enviar
             </Button>
           </form>
