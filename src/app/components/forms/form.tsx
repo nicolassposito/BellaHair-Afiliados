@@ -136,7 +136,7 @@ export default function Forms() {
                     />
                 </div>
             </div>
-            <Button type="submit" className="w-fit bg-rose-100 px-8 text-rose-500 shadow-lg">
+            <Button type="submit" className="w-fit bg-rose-100 px-8 text-rose-500 shadow-lg hover:bg-rose-500 hover:text-rose-100">
               Enviar
             </Button>
           </form>
