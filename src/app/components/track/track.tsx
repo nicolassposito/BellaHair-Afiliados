@@ -7,7 +7,7 @@ import Link from "next/link";
 export default function Track() {
     return(
       <>
-      <div className="relative pt-6 pb-8 overflow-hidden" style={{backgroundColor: '#dc4b60'}}>
+      <div className="relative pt-6 pb-8 overflow-hidden" style={{backgroundColor: '#f25970'}}>
         <div className="mt-10 left-1/2 -translate-x-1/2 absolute w-full h-full max-w-[1440px] hidden xl:block">
             <div><BellRing className="absolute text-white w-24 h-24 opacity-40 rotate-45 top-6 left-20"/></div>
             <div><PartyPopper className="absolute text-white w-24 h-24 opacity-40 rotate-0 top-56 top-1/4 left-32"/></div>

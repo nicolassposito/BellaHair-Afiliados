@@ -6,7 +6,7 @@ import Link from "next/link";
 export default function Featured() {
     return(
       <>
-      <div className="relative pb-8 md:pb-16" style={{backgroundColor: '#dc4b60'}}>
+      <div className="relative pb-8 md:pb-16" style={{backgroundColor: '#f25970'}}>
         <Image src={waves} alt="waves" className="-mt-1 w-full pb-12"/>
         <h1 className="text-3xl sm:text-4xl text-center text-rose-100 font-medium drop-shadow">Como funciona?</h1>
         <div className="grid mt-10 grid-rows-1 grid-cols-1 sm:grid-cols-4 xl:grid-cols-11 px-6 items-center justify-center sm:gap-3 xl:gap-0">
